@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon Mania News — Lockify Labs</title>
+  <meta name="description" content="New chapters, events and updates for Neon Mania, straight from Lockify Labs.">
+  <meta name="theme-color" content="#EAF3FC">
+  <link rel="canonical" href="https://lockifylabs.com/neon-mania/updates/">
+  <link rel="icon" type="image/png" href="/assets/img/neon-mania-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=DM+Mono&family=Figtree:wght@400;500;600&family=Fredoka:wght@500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/neon-mania.css">
+  <style>
+    .news-hero { position: relative; overflow: hidden; isolation: isolate; margin-top: -68px; padding: calc(68px + clamp(48px, 8vw, 100px)) 0 clamp(48px, 7vw, 90px); }
+    .news-hero .sky { position: absolute; inset: 0; z-index: -2; background: #9DB9E8 url('/assets/img/skies/golden-hour.webp') center 35% / cover no-repeat; }
+    .news-hero::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(234, 243, 252, 0.4) 0%, rgba(234, 243, 252, 0.7) 70%, #EAF3FC 100%); }
+    main { min-height: 75vh; }
+    .feed { max-width: 860px; padding-bottom: 80px; }
+    .feed .news-list { border-top: 0; display: grid; gap: 14px; }
+    .feed .news-item { background: #fff; border: 0; border-radius: 24px; padding: 24px 26px; grid-template-columns: 110px 1fr auto; box-shadow: 0 14px 34px -26px rgba(20, 60, 130, 0.6); }
+    .feed .news-item h3 { font-family: var(--font-game); font-weight: 700; font-size: 1.3rem; color: #10284A; }
+    .feed .news-item p { color: #3C5577; white-space: pre-line; }
+    .feed .news-badge { background: #E3F0FF; color: #1B5BB8; }
+    .feed .arrow-link { display: inline-flex; color: #1474F0; }
+    @media (max-width: 640px) { .feed .news-item { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body class="nm">
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/" aria-label="Lockify Labs home"><img src="/assets/brand/lockify-labs-logo-tight.svg" alt="Lockify Labs" width="111" height="30"></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/neon-mania/">Neon Mania</a></li>
+      <li><a href="/neon-mania/updates/" aria-current="page">News</a></li>
+      <li><a class="nav-cta" href="/">Lockify Labs</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <section class="news-hero">
+    <div class="sky"></div>
+    <div class="wrap">
+      <span class="nm-eyebrow">Neon Mania news</span>
+      <h1 class="nm-title" style="margin:12px 0 14px;font-size:clamp(2.6rem,6vw,4.6rem)">Fresh from the studio</h1>
+      <p class="nm-lede">New chapters, events and fixes. The same news shows in the game, under Settings → More from Lockify Labs.</p>
+    </div>
+  </section>
+  <section class="wrap">
+    <div class="feed">
+      <div class="news-list" data-news="/neon-mania/dev-updates.json" data-full>
+        <article class="news-item">
+          <span class="date">Oct 2026</span>
+          <div><h3>Welcome to Neon Mania</h3><p>New chapters, events and fixes will be announced here first.</p></div>
+          <span class="news-badge">Hello</span>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer slim"><div class="wrap"><div class="footer-base"><span>© <span data-year>2026</span> Lockify Labs</span><span><a href="/neon-mania/">Neon Mania</a> · <a href="/neon-mania/privacy/">Privacy</a> · <a href="mailto:support@lockifylabs.com">support@lockifylabs.com</a></span></div></div></footer>
+<script src="/assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "contentVersion": 1,
+  "updatesUrl": "https://lockifylabs.com/neon-mania/updates/",
+  "updates": [
+    {
+      "id": "welcome",
+      "date": "Oct 2026",
+      "badge": "Hello",
+      "icon": "star",
+      "title": "Welcome to Neon Mania",
+      "body": "Thank you for playing! New chapters, events and fixes will be announced here first. Found a bug or have an idea? Write to support@lockifylabs.com, or use Settings → Send Feedback.",
+      "link": "https://lockifylabs.com/neon-mania/updates/"
+    }
+  ]
+}

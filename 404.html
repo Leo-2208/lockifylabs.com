@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page not found — Lockify Labs</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#F6F3EC">
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/lockify-labs-mark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=DM+Mono&family=Figtree:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    .lost { min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; text-align: center; padding: 40px 16px; }
+    .lost .board { width: min(220px, 60vw); margin: 0 auto 32px; }
+    .lost p { margin: 16px auto 28px; }
+    .lost .row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  </style>
+</head>
+<body>
+  <main class="lost">
+    <div>
+      <div class="board" id="lost-board"></div>
+      <span class="eyebrow">404</span>
+      <h1 class="display" style="font-size:clamp(2.4rem,7vw,4.4rem);margin-top:14px">This route <span class="serif">leads nowhere.</span></h1>
+      <p class="lede">The page you were looking for moved or never existed.</p>
+      <div class="row">
+        <a class="btn btn-ink" href="/">Lockify Labs home</a>
+        <a class="btn btn-line" href="/neon-mania/">Neon Mania</a>
+      </div>
+    </div>
+  </main>
+  <script src="/assets/js/board.js"></script>
+  <script>
+    // A route with its last tile turned the wrong way: tap it to connect.
+    NeonBoard.mount(document.getElementById('lost-board'), {
+      label: 'A broken route', rows: 3, cols: 3, seed: 404, fill: 0.6,
+      cells: [[1, 0, 'start', [1], 'blue'], [1, 1, 'straight', [3, 1]], [1, 2, 'curve', [3, 0]], [0, 2, 'dest', [2], 'blue']]
+    });
+  </script>
+</body>
+</html>

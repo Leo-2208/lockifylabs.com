@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon Mania — A calm puzzle game about light</title>
+  <meta name="description" content="Rotate tiles to lead each colour home, cross routes without touching, and mix blue and pink into violet. 200 levels across ten skies. Coming soon to Google Play.">
+  <meta name="theme-color" content="#EAF3FC">
+  <link rel="canonical" href="https://lockifylabs.com/neon-mania/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Lockify Labs">
+  <meta property="og:title" content="Neon Mania — A calm puzzle game about light">
+  <meta property="og:description" content="Connect. Flow. Solve. 200 levels across ten skies, coming soon to Google Play.">
+  <meta property="og:url" content="https://lockifylabs.com/neon-mania/">
+  <meta property="og:image" content="https://lockifylabs.com/assets/img/neon-mania-logo.png">
+  <link rel="icon" type="image/png" href="/assets/img/neon-mania-icon.png">
+  <link rel="apple-touch-icon" href="/assets/img/neon-mania-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=DM+Mono&family=Figtree:wght@400;500;600&family=Fredoka:wght@500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/neon-mania.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"VideoGame","name":"Neon Mania","url":"https://lockifylabs.com/neon-mania/","genre":"Puzzle","gamePlatform":"Android","operatingSystem":"Android 11+","publisher":{"@type":"Organization","name":"Lockify Labs","url":"https://lockifylabs.com/"},"image":"https://lockifylabs.com/assets/img/neon-mania-icon.png"}
+  </script>
+</head>
+<body class="nm">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/" aria-label="Lockify Labs home"><img src="/assets/brand/lockify-labs-logo-tight.svg" alt="Lockify Labs" width="111" height="30"></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#play">Play</a></li>
+      <li><a href="#chapters">Chapters</a></li>
+      <li><a href="/neon-mania/updates/">News</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a class="nav-cta" href="/">Lockify Labs</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="nm-hero" id="play">
+    <div class="sky"></div>
+    <div class="wrap nm-hero-grid">
+      <div>
+        <span class="nm-eyebrow reveal">A Lockify Labs game · Coming soon</span>
+        <h1><img class="nm-logo reveal d1" src="/assets/img/neon-mania-logo.png" alt="Neon Mania" width="1024" height="500"></h1>
+        <p class="nm-tagline reveal d1">Connect. Flow. Solve.</p>
+        <p class="nm-lede reveal d2">Turn the tiles until the light flows. Lead every colour to its home, cross routes without letting them touch, and mix blue and pink into violet. A calm puzzle game with 200 levels across ten skies, from dawn to starlight.</p>
+        <div class="nm-actions reveal d3">
+          <span class="play-badge is-soon" aria-label="Coming soon to Google Play">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.37.21.8.22 1.17.02l13.12-7.56-2.9-2.9-11.39 10.44zM20.07 10.3 17.35 8.74l-3.24 3.24 3.24 3.24 2.74-1.58c.78-.45.78-1.89-.02-2.34zM1.01.76C.99.84.98.93.98 1.02v21.96c0 .09.01.18.03.26l12.14-11.11L1.01.76zm15.27 8.28L3.35.47C2.98.27 2.57.29 2.2.5l11.39 10.43 2.69-2.69z"/></svg>
+            <span><small>Coming soon to</small><strong>Google Play</strong></span>
+          </span>
+          <a class="arrow-link" href="/neon-mania/updates/">Follow the news
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="play-card frost reveal d2">
+        <div class="play-tabs" role="tablist" aria-label="Puzzles">
+          <button role="tab" aria-selected="true" data-puzzle="mixer">Mix</button>
+          <button role="tab" aria-selected="false" data-puzzle="crossing">Cross</button>
+          <button role="tab" aria-selected="false" data-puzzle="splitter">Split</button>
+          <button role="tab" aria-selected="false" data-puzzle="white">White</button>
+        </div>
+        <div class="play-hud">
+          <span class="play-hint" data-hint>Tap a tile to turn it</span>
+          <span class="hud-box">Moves<b data-moves>0</b></span>
+          <span class="hud-box">Best<b data-best>0</b></span>
+        </div>
+        <div id="play-board"></div>
+        <div class="play-win" data-win aria-live="polite">
+          <span><span class="stars" data-stars>★★★</span> <span data-win-text>Solved!</span></span>
+          <button class="gloss" data-next>Next</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mechanics -->
+  <section class="section" style="padding-top:clamp(40px,6vw,80px)">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="nm-eyebrow reveal">How it plays</span>
+        <h2 class="nm-title dark reveal d1">Light goes where you lead it.</h2>
+        <p class="nm-lede reveal d2">Every level starts scrambled. Each tap turns one tile a quarter turn, and the light follows the moment a route connects. New ideas arrive one at a time, each with a short guided tutorial.</p>
+      </div>
+      <div class="mech-grid">
+        <article class="mech reveal"><div class="mech-board" data-mini="route"></div><h3>Rotate</h3><p>Turn the pieces until the track runs from the Start to the Destination of the same colour.</p></article>
+        <article class="mech reveal d1"><div class="mech-board" data-mini="cross"></div><h3>Cross</h3><p>Two colours can share a crossing and pass straight over each other without mixing.</p></article>
+        <article class="mech reveal d2"><div class="mech-board" data-mini="split"></div><h3>Split</h3><p>A splitter sends one beam two ways, so a single Start can light up two Destinations.</p></article>
+        <article class="mech reveal d3"><div class="mech-board" data-mini="mix"></div><h3>Mix</h3><p>Feed two colours into a Mixer and a new one comes out. Plan which colours meet, and where.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Colour wheel -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap wheel">
+      <svg class="venn reveal" viewBox="0 0 400 400" aria-hidden="true">
+        <defs>
+          <clipPath id="cv-b"><circle cx="150" cy="150" r="110"/></clipPath>
+          <clipPath id="cv-p"><circle cx="250" cy="150" r="110"/></clipPath>
+          <clipPath id="cv-y"><circle cx="200" cy="237" r="110"/></clipPath>
+          <radialGradient id="cv-w"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#E4E8FF"/></radialGradient>
+        </defs>
+        <circle cx="150" cy="150" r="110" fill="#0B93FF"/>
+        <circle cx="250" cy="150" r="110" fill="#F24DB8"/>
+        <circle cx="200" cy="237" r="110" fill="#FFB302"/>
+        <g clip-path="url(#cv-b)"><circle cx="250" cy="150" r="110" fill="#8B5CFF"/><circle cx="200" cy="237" r="110" fill="#1FC96B"/></g>
+        <g clip-path="url(#cv-p)"><circle cx="200" cy="237" r="110" fill="#FF7A1A"/></g>
+        <g clip-path="url(#cv-b)"><g clip-path="url(#cv-p)"><circle cx="200" cy="237" r="110" fill="url(#cv-w)"/></g></g>
+        <g class="venn-labels" font-family="Fredoka, sans-serif" font-weight="600" font-size="17" fill="#fff" text-anchor="middle">
+          <text x="112" y="120">Blue</text><text x="288" y="120">Pink</text><text x="200" y="318">Yellow</text>
+          <text x="200" y="104">Violet</text><text x="140" y="230">Green</text><text x="260" y="230">Orange</text>
+          <text x="200" y="196" fill="#4A5BA8">White</text>
+        </g>
+      </svg>
+      <div>
+        <span class="nm-eyebrow reveal">Seven colours, one wheel</span>
+        <h2 class="nm-title dark reveal d1" style="margin:14px 0 18px">Blue, pink and yellow make everything else.</h2>
+        <div class="recipes">
+          <div class="recipe reveal"><i class="c-blue"></i><span class="op">+</span><i class="c-pink"></i><span class="op">=</span><i class="c-violet"></i><span class="name">Violet</span></div>
+          <div class="recipe reveal d1"><i class="c-blue"></i><span class="op">+</span><i class="c-yellow"></i><span class="op">=</span><i class="c-green"></i><span class="name">Green</span></div>
+          <div class="recipe reveal d2"><i class="c-pink"></i><span class="op">+</span><i class="c-yellow"></i><span class="op">=</span><i class="c-orange"></i><span class="name">Orange</span></div>
+          <div class="recipe reveal d3"><i class="c-violet"></i><span class="op">+</span><i class="c-yellow"></i><span class="op">=</span><i class="c-white"></i><span class="name">White</span></div>
+        </div>
+        <p class="nm-lede reveal" style="margin-top:18px;font-size:1rem">Later boards chain mixes: violet from one Mixer meets yellow at the next, and white light comes out. Every colour also has its own shape, so it reads without the colour too.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapters -->
+  <section class="section" id="chapters" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="nm-eyebrow reveal">200 levels · 10 chapters</span>
+        <h2 class="nm-title dark reveal d1">One day, from dawn to starlight.</h2>
+        <p class="nm-lede reveal d2">Each chapter has its own sky and its own music, and the boards grow from 5×5 to 8×8 as you climb. Clear a chapter's levels and collect enough stars to open the next.</p>
+      </div>
+      <div class="chapters reveal" tabindex="0" aria-label="Chapters">
+        <article class="chapter"><img src="/assets/img/skies/dawn.webp" alt="" loading="lazy"><span class="n">01 · LEVELS 1–20</span><h3>Dawn</h3><p>Learn to turn the light.</p></article>
+        <article class="chapter"><img src="/assets/img/skies/sunrise.webp" alt="" loading="lazy"><span class="n">02 · LEVELS 21–40</span><h3>Sunrise</h3><p>A second colour, then crossings.</p></article>
+        <article class="chapter"><img src="/assets/img/skies/morning.webp" alt="" loading="lazy"><span class="n">03 · LEVELS 41–60</span><h3>Morning</h3><p>Mixers and splitters.</p></article>
+        <article class="chapter"><img src="/assets/img/skies/noon.webp" alt="" loading="lazy"><span class="n">04 · LEVELS 61–80</span><h3>Noon</h3><p>Yellow, green and orange.</p></article>
+        <article class="chapter"><img src="/assets/img/skies/afternoon.webp" alt="" loading="lazy"><span class="n">05 · LEVELS 81–100</span><h3>Afternoon</h3><p>Same colours, joined.</p></article>
+        <article class="chapter"><img src="/assets/img/skies/golden-hour.webp" alt="" loading="lazy"><span class="n">06 · LEVELS 101–120</span><h3>Golden Hour</h3><p>Bigger boards, white light.</p></article>
+        <article class="chapter"><img src="/assets/img/skies/sunset.webp" alt="" loading="lazy"><span class="n">07 · LEVELS 121–140</span><h3>Sunset</h3><p>Build white from scratch.</p></article>
+        <article class="chapter"><img src="/assets/img/skies/dusk.webp" alt="" loading="lazy"><span class="n">08 · LEVELS 141–160</span><h3>Dusk</h3><p>Onto the 8×8 boards.</p></article>
+        <article class="chapter"><img src="/assets/img/skies/night.webp" alt="" loading="lazy"><span class="n">09 · LEVELS 161–180</span><h3>Night</h3><p>Long chains, many crossings.</p></article>
+        <article class="chapter"><img src="/assets/img/skies/starlight.webp" alt="" loading="lazy"><span class="n">10 · LEVELS 181–200</span><h3>Starlight</h3><p>The finale.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="nm-eyebrow reveal">Made to unwind</span>
+        <h2 class="nm-title dark reveal d1">Gentle on you, tough on the board.</h2>
+      </div>
+      <div class="feats">
+        <div class="feat reveal"><div class="feat-ico" style="background:#FFB302"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg></div><h3>Stars and Perfect</h3><p>Fewer taps earn more stars. Match the fewest moves possible, with no help, and the level turns gold.</p></div>
+        <div class="feat reveal d1"><div class="feat-ico" style="background:#F24DB8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M7.5 8a2.5 2.5 0 1 1 4.5-1.5A2.5 2.5 0 1 1 16.5 8"/></svg></div><h3>Daily Gift</h3><p>A small present every day: extra moves, extra time, hints and solutions.</p></div>
+        <div class="feat reveal d2"><div class="feat-ico" style="background:#0B93FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17.5h.01"/></svg></div><h3>Guided tutorials</h3><p>Each new idea gets a short hands-on lesson you can skip, and replay any time.</p></div>
+        <div class="feat reveal"><div class="feat-ico" style="background:#8B5CFF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><h3>Music that follows the sky</h3><p>Soft layered music changes with each chapter, from birdsong at dawn to quiet night tones.</p></div>
+        <div class="feat reveal d1"><div class="feat-ico" style="background:#1FC96B"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div><h3>Your progress, safe</h3><p>No account needed. Sign in to Google Play Games to back up your progress and carry it to a new phone.</p></div>
+        <div class="feat reveal d2"><div class="feat-ico" style="background:#FF7A1A"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="7" r="3"/><path d="M17 4l3 5h-6z"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M17 14l3 3-3 3-3-3z"/></svg></div><h3>Colour and shape</h3><p>Every colour carries its own symbol, so routes stay readable for colour-blind players.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="nm-eyebrow reveal">Questions</span>
+        <h2 class="nm-title dark reveal d1">Good to know</h2>
+      </div>
+      <div class="faq reveal">
+        <details><summary>When can I play?</summary><p>Neon Mania is coming soon to Google Play. Check the <a href="/neon-mania/updates/">news page</a>, or come back here; the button above will change to a download link on launch day.</p></details>
+        <details><summary>Is it free?</summary><p>Yes, it is free to play. You can watch an optional ad for extra items, there are occasional ads between levels, and item packs are available to buy. Neon Mania Plus is a one-time purchase that removes the ads between levels.</p></details>
+        <details><summary>Which phones does it run on?</summary><p>Android phones and tablets running Android 11 or newer. An iPhone version is not planned yet.</p></details>
+        <details><summary>Is it suitable for children?</summary><p>Yes. Neon Mania is made for all ages. Younger players never see personalised ads, and children under 13 only see ads suitable for them. The <a href="/neon-mania/privacy/">privacy policy</a> has the details.</p></details>
+        <details><summary>Do I need an account or an internet connection?</summary><p>No account is needed, and the levels play offline. Ads, purchases and the optional Google Play Games cloud save need a connection.</p></details>
+        <details><summary>I'm stuck or found a bug. Who do I tell?</summary><p>Write to <a href="mailto:support@lockifylabs.com">support@lockifylabs.com</a>, or use Settings → Send Feedback in the game, which fills in your phone and game version for us.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="nm-cta reveal">
+        <img src="/assets/img/skies/starlight.webp" alt="" loading="lazy">
+        <h2 class="nm-title">The lights are almost on.</h2>
+        <p>Neon Mania arrives on Google Play soon. Follow the news to hear about launch day first.</p>
+        <div class="row">
+          <span class="play-badge is-soon" aria-label="Coming soon to Google Play">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.37.21.8.22 1.17.02l13.12-7.56-2.9-2.9-11.39 10.44zM20.07 10.3 17.35 8.74l-3.24 3.24 3.24 3.24 2.74-1.58c.78-.45.78-1.89-.02-2.34zM1.01.76C.99.84.98.93.98 1.02v21.96c0 .09.01.18.03.26l12.14-11.11L1.01.76zm15.27 8.28L3.35.47C2.98.27 2.57.29 2.2.5l11.39 10.43 2.69-2.69z"/></svg>
+            <span><small>Coming soon to</small><strong>Google Play</strong></span>
+          </span>
+          <a class="arrow-link" href="/neon-mania/updates/">Neon Mania news
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" id="contact">
+  <div class="wrap">
+    <div class="footer-grid" style="padding-top:0">
+      <div class="footer-brand">
+        <img src="/assets/brand/lockify-labs-logo-tight.svg" alt="Lockify Labs" width="125" height="34">
+        <p>Neon Mania is made by Lockify Labs, an independent studio making calm, private, clutter-free apps and games.</p>
+      </div>
+      <div><h4>Neon Mania</h4><ul><li><a href="/neon-mania/updates/">News</a></li><li><a href="/neon-mania/privacy/">Privacy policy</a></li><li><a href="/press/#neon-mania">Press kit</a></li></ul></div>
+      <div><h4>Studio</h4><ul><li><a href="/">Lockify Labs</a></li><li><a href="https://getlockifyapp.com" rel="noopener">Lockify</a></li></ul></div>
+      <div><h4>Help</h4><ul><li><a href="mailto:support@lockifylabs.com">support@lockifylabs.com</a></li><li><a href="mailto:contact@lockifylabs.com">contact@lockifylabs.com</a></li></ul></div>
+    </div>
+    <div class="footer-base"><span>© <span data-year>2026</span> Lockify Labs</span><span>Google Play and the Google Play logo are trademarks of Google LLC.</span></div>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js"></script>
+<script src="/assets/js/board.js"></script>
+<script>
+  (function () {
+    var N = 0, E = 1, S = 2, W = 3;
+    var minis = {
+      route: { rows: 3, cols: 3, solved: true, fill: 0, cells: [[2, 0, 'start', [E], 'blue'], [2, 1, 'curve', [W, N]], [1, 1, 'curve', [S, E]], [1, 2, 'curve', [W, N]], [0, 2, 'dest', [S], 'blue']] },
+      cross: { rows: 3, cols: 3, solved: true, fill: 0, cells: [[1, 0, 'start', [E], 'blue'], [1, 1, 'cross'], [1, 2, 'dest', [W], 'blue'], [0, 1, 'start', [S], 'pink'], [2, 1, 'dest', [N], 'pink']] },
+      split: { rows: 3, cols: 3, solved: true, fill: 0, cells: [[1, 0, 'start', [E], 'yellow'], [1, 1, 'splitter', [W, N, S]], [0, 1, 'curve', [S, E]], [0, 2, 'dest', [W], 'yellow'], [2, 1, 'curve', [N, E]], [2, 2, 'dest', [W], 'yellow']] },
+      mix: { rows: 3, cols: 3, solved: true, fill: 0, cells: [[1, 0, 'start', [E], 'blue'], [2, 1, 'start', [N], 'pink'], [1, 1, 'mixer', [W, S, E]], [1, 2, 'dest', [W], 'violet']] }
+    };
+    document.querySelectorAll('[data-mini]').forEach(function (host) {
+      var p = minis[host.getAttribute('data-mini')];
+      p.label = host.parentNode.querySelector('h3').textContent + ' example';
+      NeonBoard.mount(host, p, { interactive: false });
+    });
+
+    var order = ['mixer', 'crossing', 'splitter', 'white'];
+    var hints = {
+      mixer: 'Mix blue and pink into violet',
+      crossing: 'Cross the two routes',
+      splitter: 'Light both destinations',
+      white: 'Violet and yellow make white'
+    };
+    var host = document.getElementById('play-board');
+    var tabs = document.querySelectorAll('.play-tabs button');
+    var movesEl = document.querySelector('[data-moves]');
+    var bestEl = document.querySelector('[data-best]');
+    var hintEl = document.querySelector('[data-hint]');
+    var win = document.querySelector('[data-win]');
+    var winText = document.querySelector('[data-win-text]');
+    var starsEl = document.querySelector('[data-stars]');
+    var current = 'mixer';
+
+    // The game's own star rule (LevelThresholds): gold = min + max(2, 15%), silver = min + max(5, 40%).
+    function stars(moves, min) {
+      if (moves <= min + Math.max(2, Math.ceil(min * 0.15))) return 3;
+      if (moves <= min + Math.max(5, Math.ceil(min * 0.4))) return 2;
+      return 1;
+    }
+
+    function load(name) {
+      current = name;
+      tabs.forEach(function (t) { t.setAttribute('aria-selected', t.getAttribute('data-puzzle') === name ? 'true' : 'false'); });
+      win.classList.remove('show');
+      host.classList.remove('nb-won');
+      hintEl.textContent = hints[name];
+      movesEl.textContent = '0';
+      var board = NeonBoard.mount(host, NeonPuzzles[name], {
+        onMove: function (n) { movesEl.textContent = n; },
+        onWin: function (n, min) {
+          var s = stars(n, min);
+          starsEl.innerHTML = '★★★'.slice(0, s) + '<span class="off">' + '★★★'.slice(0, 3 - s) + '</span>';
+          winText.textContent = n <= min ? 'Perfect!' : 'Solved in ' + n + ' moves';
+          win.classList.add('show');
+        }
+      });
+      bestEl.textContent = board.minMoves;
+    }
+
+    tabs.forEach(function (t) { t.addEventListener('click', function () { load(t.getAttribute('data-puzzle')); }); });
+    document.querySelector('[data-next]').addEventListener('click', function () {
+      load(order[(order.indexOf(current) + 1) % order.length]);
+    });
+    load('mixer');
+  })();
+</script>
+</body>
+</html>
