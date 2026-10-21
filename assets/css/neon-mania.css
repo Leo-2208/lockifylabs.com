@@ -66,7 +66,7 @@
 /* Mechanics */
 .mech-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .mech { background: #fff; border-radius: 26px; padding: 18px 18px 24px; box-shadow: 0 1px 0 rgba(20, 60, 130, 0.06), 0 18px 40px -26px rgba(20, 60, 130, 0.45); }
-.mech-board { background: linear-gradient(160deg, #DDEEFE, #F3E7F7); border-radius: 18px; padding: 16px; margin-bottom: 20px; }
+.mech-board { background: linear-gradient(160deg, #DDEEFE, #F3E7F7); border-radius: 18px; padding: 12px; margin-bottom: 20px; }
 .mech h3 { font-family: var(--font-game); font-weight: 700; font-size: 1.4rem; color: #10284A; }
 .mech p { color: #3C5577; font-size: 0.97rem; margin-top: 6px; }
 

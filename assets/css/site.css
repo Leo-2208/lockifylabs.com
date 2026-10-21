@@ -185,20 +185,27 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   background: radial-gradient(closest-side, rgba(46, 91, 255, 0.16), rgba(46, 91, 255, 0) 70%);
   animation: breathe 6s ease-in-out infinite;
 }
-.hero-mark .orbit { position: absolute; inset: 0; border-radius: 50%; border: 1px dashed var(--line-2); animation: spin 60s linear infinite; }
+/* Each dot sits on its ring's line at the top (centred on the 1px border), and the ring turns.
+   A negative delay sets where on the ring each dot starts. */
+.hero-mark .orbit { position: absolute; inset: 0; border-radius: 50%; border: 1px dashed var(--line-2); animation: spin 60s linear infinite -52.5s; }
 .hero-mark .orbit::after {
-  content: ''; position: absolute; top: 12%; left: 12%; width: 12px; height: 12px; border-radius: 50%;
+  content: ''; position: absolute; top: -0.5px; left: 50%; width: 12px; height: 12px; border-radius: 50%;
+  transform: translate(-50%, -50%);
   background: var(--nm-pink); box-shadow: 0 0 0 6px rgba(242, 77, 184, 0.15);
 }
-.hero-mark .orbit.two { inset: 13%; animation-duration: 38s; animation-direction: reverse; }
-.hero-mark .orbit.two::after { background: var(--lockify-teal); box-shadow: 0 0 0 6px rgba(61, 217, 164, 0.18); top: auto; bottom: 4%; left: 50%; }
-.hero-mark .orbit.three { inset: 26%; border-style: solid; border-color: var(--line); animation-duration: 24s; }
-.hero-mark .orbit.three::after { background: var(--nm-yellow); box-shadow: 0 0 0 6px rgba(255, 179, 2, 0.18); top: 50%; left: auto; right: -6px; }
+.hero-mark .orbit.two { inset: 13%; animation-duration: 38s; animation-direction: reverse; animation-delay: -19s; }
+.hero-mark .orbit.two::after { background: var(--lockify-teal); box-shadow: 0 0 0 6px rgba(61, 217, 164, 0.18); }
+.hero-mark .orbit.three { inset: 26%; border-style: solid; border-color: var(--line); animation-duration: 24s; animation-delay: -6s; }
+.hero-mark .orbit.three::after { background: var(--nm-yellow); box-shadow: 0 0 0 6px rgba(255, 179, 2, 0.18); }
 .hero-mark svg.mark { position: absolute; inset: 31%; width: 38%; height: 38%; overflow: visible; filter: drop-shadow(0 24px 30px rgba(11, 22, 38, 0.25)); }
-.mark-stem { transform-box: fill-box; transform-origin: 50% 100%; animation: stem-up 0.9s var(--ease) both 0.15s; }
-.mark-foot { transform-box: fill-box; transform-origin: 0% 0%; animation: latch 1.1s var(--ease) both 0.7s; }
-@keyframes stem-up { from { transform: scaleY(0.15); opacity: 0; } to { transform: none; opacity: 1; } }
-@keyframes latch { 0% { transform: rotate(-32deg); opacity: 0; } 55% { transform: rotate(5deg); opacity: 1; } 78% { transform: rotate(-2deg); } 100% { transform: none; opacity: 1; } }
+/* The game's intro entrance (StudioIntro.kt, BuildUp): the stem draws up from the baseline while
+   the foot draws out left to right, together in 650 ms, then a soft light sweeps the ink (800 ms). */
+.mark-stem { animation: mark-stem 0.65s linear both 0.25s; }
+.mark-foot { animation: mark-foot 0.65s linear both 0.25s; }
+.mark-sheen { animation: mark-sheen 0.8s ease-in-out both 0.9s; }
+@keyframes mark-stem { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes mark-foot { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes mark-sheen { from { transform: translateX(0); } to { transform: translateX(2300px); } }
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes breathe { 50% { transform: scale(1.06); opacity: 0.8; } }
 
@@ -345,6 +352,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .prose li { margin-bottom: 8px; }
 .prose strong { color: var(--ink); font-weight: 600; }
 .prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+/* Numbered sections, like the Lockify policy. */
+.prose.numbered { counter-reset: section; }
+.prose.numbered > h2 { counter-increment: section; padding-top: 40px; border-top: 1px solid var(--line); }
+.prose.numbered > h2::before {
+  content: counter(section, decimal-leading-zero); display: block; margin-bottom: 8px;
+  font-family: var(--font-mono); font-weight: 400; font-size: 0.72rem; letter-spacing: 0.12em; color: var(--ink-3);
+}
 .summary-card { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 24px 28px; }
 .summary-card ul { margin: 0; }
 
@@ -356,32 +370,15 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .reveal.d3 { transition-delay: 0.24s; }
 
 /* ── Neon Mania mini board ── */
-.nb svg { width: 100%; height: auto; overflow: visible; }
-.nb-depth { fill: rgba(30, 60, 120, 0.2); }
-.nb-face { fill: #FCFAF5; stroke: rgba(30, 50, 90, 0.08); stroke-width: 1.5; transition: fill 0.2s; }
-.nb-face-blank { fill: rgba(252, 250, 245, 0.55); }
-.nb-spin { transform-box: fill-box; transform-origin: center; transition: transform 0.32s cubic-bezier(0.34, 1.5, 0.5, 1); }
-.nb-groove, .nb-halo, .nb-core, .nb-shine, .nb-collar { fill: none; stroke-linecap: butt; }
-.nb-groove { stroke: #E2DCD0; stroke-width: 26; }
-.nb-halo { stroke-width: 24; opacity: 0; transition: opacity 0.3s; }
-.nb-core { stroke: transparent; stroke-width: 15; opacity: 0; transition: opacity 0.25s; }
-.nb-shine { stroke: #fff; stroke-width: 4; opacity: 0; transform: translate(-2px, -2px); transition: opacity 0.25s; }
-.nb-halo.on { opacity: 0.55; }
-.nb-core.on { opacity: 1; }
-.nb-shine.on { opacity: 0.55; }
-.nb-collar { stroke: #FCFAF5; stroke-width: 40; }
-.nb-dome { fill: #fff; stroke: #E2DCD0; stroke-width: 5; }
-.nb-hub { fill: #fff; stroke: #CFC7B9; stroke-width: 7; transition: stroke 0.3s; }
-.nb-hub-core { fill: #EEE9DF; }
-.nb-spout { fill: #CFC7B9; transition: fill 0.3s; }
-.nb-node { filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2)); }
-.nb-node-ring { fill: none; stroke: rgba(255, 255, 255, 0.85); stroke-width: 5; }
-.nb-well { fill: #fff; stroke-width: 7; transition: fill 0.3s; }
+/* The game's board panel (boardFrame) behind tiles drawn by board.js after TileDraw.kt. */
+.nb svg { width: 100%; height: auto; border-radius: 14px; background: rgba(238, 244, 255, 0.85); }
+.nb-spin { transform-box: fill-box; transform-origin: center; transition: transform 0.3s cubic-bezier(0.34, 1.4, 0.5, 1); }
 .nb-tap { cursor: pointer; outline: none; }
-.nb-tap:hover .nb-face { fill: #fff; }
+.nb-tap .nb-face { transition: filter 0.2s; }
+.nb-tap:hover .nb-face { filter: brightness(1.04); }
 .nb-tap:focus-visible .nb-face { stroke: var(--accent); stroke-width: 4; }
-.nb-won .nb-halo.on { animation: nb-pulse 1.4s ease-in-out 2; }
-@keyframes nb-pulse { 50% { opacity: 1; stroke-width: 34; } }
+.nb-won .nb-bloom { animation: nb-pulse 1.4s ease-in-out 2; }
+@keyframes nb-pulse { 50% { opacity: 0.25; stroke-width: 52; } }
 
 /* ── Responsive ── */
 @media (max-width: 980px) {
