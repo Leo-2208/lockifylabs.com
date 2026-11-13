@@ -1,7 +1,16 @@
 {
-  "contentVersion": 1,
+  "contentVersion": 2,
   "updatesUrl": "https://lockifylabs.com/neon-mania/updates/",
   "updates": [
+    {
+      "id": "ads-paused-launch",
+      "date": "Nov 2026",
+      "badge": "Heads up",
+      "icon": "gift",
+      "title": "Ads are taking a short break",
+      "body": "Neon Mania is out, and thank you for playing from day one! Google is still reviewing our new ad account, so ads won't show in the game for now. That includes the optional \"watch an ad\" rewards, so those buttons may not give items yet. Nothing is wrong with your game or your phone, and every level plays just the same. Ads and rewards will switch on by themselves once the review is done, and we'll post here when they're back.",
+      "link": "https://lockifylabs.com/neon-mania/updates/"
+    },
     {
       "id": "welcome",
       "date": "Oct 2026",
